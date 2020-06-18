@@ -1,0 +1,9 @@
+SQL> desc UserDetails;
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ NAME                                               VARCHAR2(40)
+ MOBILE_NO                                          NUMBER(10)
+ EMAIL                                              VARCHAR2(40)
+ USERNAME                                  NOT NULL VARCHAR2(30)
+ PASSWORD                                  NOT NULL VARCHAR2(30)
