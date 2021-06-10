@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.dao.LoginDao;
+import com.dao.RegisterDao;
 import com.model.Login;
 
 /**
@@ -39,13 +40,18 @@ public class LoginController extends HttpServlet {
 		String Username=request.getParameter("uname");
 		String Password=request.getParameter("pass");
 		
+		LoginDao l1 =new LoginDao();
+		//String Salt = l1.GetSalt(Username);
+		//System.out.println(Salt);
+		RegisterDao r = new RegisterDao();
+		String PasswordToVerify = r.HashMD5(Password);
+		
 		Login l=new Login();
 		l.setUname(Username);
-		l.setPass(Password);
+		l.setPass(PasswordToVerify);
 		
 		PrintWriter out = response.getWriter();
 		
-		LoginDao l1 =new LoginDao();
 		boolean b=l1.validate(l);
 		if(b){
             HttpSession session=request.getSession();  

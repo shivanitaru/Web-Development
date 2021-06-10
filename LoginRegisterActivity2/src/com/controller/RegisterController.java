@@ -2,6 +2,8 @@ package com.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,23 +42,33 @@ public class RegisterController extends HttpServlet {
 			String Email = request.getParameter("email");
 			Long Mobno=Long.parseLong(request.getParameter("mbno"));
 			String Username = request.getParameter("uname");
-			String Password = request.getParameter("pass");
+			String Password = request.getParameter("pass"); //staru12
+			
+			RegisterDao rd=new RegisterDao();
+			//String Salt = rd.GetSalt();
+			String SecurePass = rd.HashMD5(Password); //staru12
 			
 			Register r = new Register();
 			r.setName(Name);
 			r.setEmail(Email);
 			r.setMbno(Mobno);
 			r.setUname(Username);
-			r.setPass(Password);
+			r.setPass(SecurePass);
+			//r.setSalt(Salt);
 			
-			RegisterDao rd=new RegisterDao();
 			int c=rd.savedata(r);
 			if(c>0)
 			{
 				response.sendRedirect("LoginPage.jsp");
 			}
 			
-		}
+		} /*catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchProviderException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}*/
 	}
 
 	/**

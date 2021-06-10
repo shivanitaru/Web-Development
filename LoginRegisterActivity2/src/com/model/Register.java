@@ -6,7 +6,7 @@ public class Register {
 	private String email;
 	private String uname;
 	private String pass;
-	
+	//private String salt;
 	
 	public Register() {
 		
@@ -42,5 +42,12 @@ public class Register {
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+	/*public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
+	}*/
+
 	
 }

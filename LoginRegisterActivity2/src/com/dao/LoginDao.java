@@ -38,7 +38,7 @@ public class LoginDao {
 		
 		try
 		{
-			ps=con.prepareStatement("select * from UserDetails where Username=? AND Password=?");
+			ps=con.prepareStatement("select * from UserDetails where uname=? AND password=?");
 			ps.setString(1,l.getUname());
 			ps.setString(2,l.getPass());
 			ResultSet rs=ps.executeQuery();
@@ -55,5 +55,22 @@ public class LoginDao {
 		}
 		return b;
 	}
+	
+	/*public String GetSalt(String uname){
+		String salt = null;
+		getConnection();
+		try{
+			ps=con.prepareStatement("select salt from UserDetails where uname=?");
+			ps.setString(1,uname);
+			ResultSet rs=ps.executeQuery();
+			if(rs.next()){
+				salt = rs.getString(1);
+			}
+		}
+		catch(Exception e){
+			System.out.println(e);
+		}
+		return salt;
+	}*/
 
 }
